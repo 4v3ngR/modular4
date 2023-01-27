@@ -22,7 +22,7 @@ WatchFace({
       color: 0x000000
     });
 
-    createTime(124, 40, 200, 80, Images);
+    createTime(124 - 20 * !hmSetting.getTimeFormat(), 40, 200, 80, Images);
     createWeather(30, 140, 300, 120, Images);
     createDate(48, 51, Images);
     createSteps(40, 288, 80, 80, Images);
@@ -36,11 +36,12 @@ WatchFace({
 
     const widgetDelegate = hmUI.createWidget(hmUI.widget.WIDGET_DELEGATE, {
       resume_call: (function () {
-        if (hmSetting.getTimeFormat() !== timeFormat) {
+        const newTimeFormat = hmSetting.getTimeFormat();
+        if (newTimeFormat !== timeFormat) {
           const Images = getImages(hmSetting.getLanguage());
           destroyTime();
-          createTime(124, 40, 200, 80, Images);
-          timeFormat = hmSetting.getTimeFormat();
+          createTime(124 - 20 * timeFormat, 40, 200, 80, Images);
+          timeFormat = newTimeFormat;
         }
       }),
       pause_call: (function () {
