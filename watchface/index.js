@@ -1,5 +1,5 @@
 import { getImages } from './includes/images';
-import { createTime } from './widgets/time';
+import { createTime, destroyTime } from './widgets/time';
 import { createWeather } from './widgets/large/weather';
 import { createDate } from './widgets/date';
 import { createSteps } from './widgets/steps';
@@ -31,7 +31,23 @@ WatchFace({
     createBattery(204, 332, 80, 80, Images);
   },
 
-  onInit() { },
+  onInit() {
+    let timeFormat = hmSetting.getTimeFormat();
+
+    const widgetDelegate = hmUI.createWidget(hmUI.widget.WIDGET_DELEGATE, {
+      resume_call: (function () {
+        if (hmSetting.getTimeFormat() !== timeFormat) {
+          const Images = getImages(hmSetting.getLanguage());
+          destroyTime();
+          createTime(124, 40, 200, 80, Images);
+          timeFormat = hmSetting.getTimeFormat();
+        }
+      }),
+      pause_call: (function () {
+        console.log('ui pause');
+      }),
+    })
+  },
 
   build() {
     try {

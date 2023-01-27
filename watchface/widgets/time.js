@@ -1,5 +1,13 @@
+let timeWidget = null;
+let clickZone = null;
+
 export const createTime = (x, y, w, h, Images) => {
   const timeFormat = hmSetting.getTimeFormat();
+
+  if (timeWidget || clickZone) {
+    console.log("time already exists");
+    return;
+  }
 
   let ampm = {};
   if (!timeFormat) {
@@ -15,7 +23,7 @@ export const createTime = (x, y, w, h, Images) => {
     };
   }
 
-  hmUI.createWidget(hmUI.widget.IMG_TIME, {
+  timeWidget = hmUI.createWidget(hmUI.widget.IMG_TIME, {
     hour_zero: timeFormat,
     hour_startX: x,
     hour_startY: y,
@@ -34,7 +42,7 @@ export const createTime = (x, y, w, h, Images) => {
     show_level: hmUI.show_level.ONLY_NORMAL
   });
 
-  hmUI.createWidget(hmUI.widget.IMG_CLICK, {
+  clickZone = hmUI.createWidget(hmUI.widget.IMG_CLICK, {
     x,
     y,
     w,
@@ -42,4 +50,16 @@ export const createTime = (x, y, w, h, Images) => {
     type: hmUI.data_type.COUNT_DOWN,
     show_level: hmUI.show_level.ONLY_NORMAL,
   });
+}
+
+export const destroyTime = () => {
+  if (timeWidget) {
+    hmUI.deleteWidget(timeWidget);
+    timeWidget = null;
+  }
+
+  if (clickZone) {
+    hmUI.deleteWidget(clickZone);
+    clickZone = null;
+  }
 }
