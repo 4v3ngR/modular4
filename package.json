@@ -1,0 +1,16 @@
+{
+  "name": "empty",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "zeus dev",
+    "build": "zeus build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@zeppos/device-types": "^1.0.0"
+  }
+}
