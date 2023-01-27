@@ -1,6 +1,22 @@
 export const createTime = (x, y, w, h, Images) => {
+  const timeFormat = hmSetting.getTimeFormat();
+
+  let ampm = {};
+  if (!timeFormat) {
+    ampm = {
+      am_x: x + w - 20,
+      am_y: y + h - 18,
+      am_sc_path: Images.AM,
+      am_en_path: Images.AM,
+      pm_x: x + w - 20,
+      pm_y: y + h - 18,
+      pm_sc_path: Images.PM,
+      pm_en_path: Images.PM,
+    };
+  }
+
   hmUI.createWidget(hmUI.widget.IMG_TIME, {
-    hour_zero: hmSetting.getTimeFormat(),
+    hour_zero: timeFormat,
     hour_startX: x,
     hour_startY: y,
     hour_array: Images.BigNums,
@@ -10,12 +26,10 @@ export const createTime = (x, y, w, h, Images) => {
     hour_unit_en: Images.Colon,
     hour_align: hmUI.align.RIGHT,
     minute_zero: 1,
-    minute_startX: x + 100,
-    minute_startY: y,
     minute_array: Images.BigNums,
-    minute_space: 0,
-    minute_align: hmUI.align.LEFT,
-    minute_follow: 0,
+    minute_align: hmUI.align.RIGHT,
+    minute_follow: 1,
+    ...ampm,
     enable: true,
     show_level: hmUI.show_level.ONLY_NORMAL
   });

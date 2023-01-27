@@ -133,6 +133,8 @@ export const getImages = (lang) => {
     Calories: img('Icons/cals.png'),
     HeartRate: img('Icons/heartrate.png'),
     Percentage: img('Icons/percentage.png'),
-    Steps: img('Icons/steps.png')
+    Steps: img('Icons/steps.png'),
+    PM: img('Time/pm.png'),
+    AM: img('Time/am.png')
   };
 }
