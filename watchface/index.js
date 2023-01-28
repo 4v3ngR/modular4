@@ -1,11 +1,11 @@
 import { getImages } from './includes/images';
 import { createTime, destroyTime } from './widgets/time';
-import { createWeather } from './widgets/large/weather';
-import { createDate } from './widgets/date';
-import { createSteps } from './widgets/steps';
-import { createCalories } from './widgets/calories';
-import { createHeartRate } from './widgets/heartrate';
-import { createBattery } from './widgets/battery';
+import { createWeather, destroyWeather } from './widgets/large/weather';
+import { createDate, destroyDate } from './widgets/date';
+import { createSteps, destroySteps } from './widgets/steps';
+import { createCalories, destroyCalories } from './widgets/calories';
+import { createHeartRate, destroyHeartRate } from './widgets/heartrate';
+import { createBattery, destroyBattery } from './widgets/battery';
 
 WatchFace({
   initView() {
@@ -22,6 +22,20 @@ WatchFace({
       color: 0x000000
     });
 
+    this.createWidgets(Images);
+  },
+
+  destroyWidgets() {
+    destroyTime();
+    destroyWeather();
+    destroyDate();
+    destroySteps();
+    destroyCalories();
+    destroyHeartRate();
+    destroyBattery();
+  },
+
+  createWidgets(Images) {
     createTime(124 - 20 * !hmSetting.getTimeFormat(), 40, 200, 80, Images);
     createWeather(30, 140, 300, 120, Images);
     createDate(48, 51, Images);
@@ -33,18 +47,21 @@ WatchFace({
 
   onInit() {
     let timeFormat = hmSetting.getTimeFormat();
+    let language = hmSetting.getLanguage();
 
     const widgetDelegate = hmUI.createWidget(hmUI.widget.WIDGET_DELEGATE, {
-      resume_call: (function () {
+      resume_call: (() => {
         const newTimeFormat = hmSetting.getTimeFormat();
-        if (newTimeFormat !== timeFormat) {
+        const newLanguage = hmSetting.getLanguage();
+        if (newTimeFormat !== timeFormat || newLanguage !== language) {
           const Images = getImages(hmSetting.getLanguage());
-          destroyTime();
-          createTime(124 - 20 * timeFormat, 40, 200, 80, Images);
+          this.destroyWidgets();
+          this.createWidgets(Images);
           timeFormat = newTimeFormat;
+          language = newLanguage;
         }
       }),
-      pause_call: (function () {
+      pause_call: (() => {
         console.log('ui pause');
       }),
     })
