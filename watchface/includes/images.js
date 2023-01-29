@@ -1,4 +1,5 @@
 export const getImages = (lang) => {
+	console.log("language = ", lang);
   let imgRoot = 'default/';
   switch (lang) {
     case 0: // zh-CN
@@ -38,7 +39,7 @@ export const getImages = (lang) => {
       imgRoot = 'default/';
       break;
     case 12: // th-TH
-      imgRoot = 'default/';
+      imgRoot = 'th_TH/';
       break;
     case 13: // ar-EG
       imgRoot = 'default/';
