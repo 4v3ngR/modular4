@@ -121,7 +121,7 @@ export const getImages = (lang) => {
     BigNums: range(10).map(v => img(`Digits/large_${v}.png`)),
     MidNums: range(10).map(v => img(`Digits/mid_${v}.png`)),
     SmallNums: range(10).map(v => img(`Digits/small_${v}.png`)),
-    WeekDays: range(1,7).map(v => img(`Date/weekdays_${v}.png`)),
+    WeekDays: range(7).map(v => img(`Date/weekdays_${v}.png`)),
     Weather: range(29).map(v => img(`Weather/${v}.png`)),
     WeatherHeading: img('Weather/heading.png'),
     WeatherLow: img('Weather/low.png'),
