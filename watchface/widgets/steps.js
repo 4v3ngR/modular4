@@ -1,6 +1,5 @@
 let stepsWidget = null;
 let stepsImage = null;
-let stepsClick = null;
 
 export const createSteps = (x, y, w, h, Images) => {
   if (!stepsWidget) {
@@ -15,6 +14,11 @@ export const createSteps = (x, y, w, h, Images) => {
       padding: false,
       isCharacter: false
     });
+
+    stepsWidget.addEventListener(hmUI.event.CLICK_DOWN, () => {
+      hmApp.startApp({ appid: 1, url: 'SportListScreen', native: true });
+      return true;
+    });
   }
 
   if (!stepsImage) {
@@ -24,16 +28,10 @@ export const createSteps = (x, y, w, h, Images) => {
       src: Images.Steps,
       show_level: hmUI.show_level.ONLY_NORMAL,
     });
-  }
 
-  if (!stepsClick) {
-    stepsClick = hmUI.createWidget(hmUI.widget.IMG_CLICK, {
-      x,
-      y,
-      w,
-      h,
-      type: hmUI.data_type.STEP,
-      show_level: hmUI.show_level.ONLY_NORMAL,
+    stepsImage.addEventListener(hmUI.event.CLICK_DOWN, () => {
+      hmApp.startApp({ appid: 1, url: 'SportListScreen', native: true });
+      return true;
     });
   }
 }
@@ -47,10 +45,5 @@ export const destroySteps = () => {
   if (stepsImage) {
     hmUI.deleteWidget(stepsImage);
     stepsImage = null;
-  }
-
-  if (stepsClick) {
-    hmUI.deleteWidget(stepsClick);
-    stepsClick = null;
   }
 }
