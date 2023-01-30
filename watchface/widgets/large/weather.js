@@ -1,15 +1,6 @@
-let currentWidget = null;
-let headingImage = null;
-let highImage = null;
-let lowImage = null;
-let highTempWidget = null;
-let lowTempWidget = null;
-let currentTempWidget = null;
-let weatherClick = null;
-
-export const createWeather = (x, y, w, h, Images) => {
-  if (!currentWidget) {
-    currentWidget = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {
+export class WeatherWidget {
+  constructor(x, y, w, h, Images) {
+    this.currentWidget = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {
       x: x + 76,
       y: y + 44,
       image_array: Images.Weather,
@@ -17,37 +8,29 @@ export const createWeather = (x, y, w, h, Images) => {
       type: hmUI.data_type.WEATHER_CURRENT,
       show_level: hmUI.show_level.ONLY_NORMAL,
     });
-  }
 
-  if (!headingImage) {
-    headingImage = hmUI.createWidget(hmUI.widget.IMG, {
+    this.headingImage = hmUI.createWidget(hmUI.widget.IMG, {
       x: x + 8,
       y: y + 6,
       src: Images.WeatherHeading,
       show_level: hmUI.show_level.ONLY_NORMAL,
     });
-  }
 
-  if (!highImage) {
-    highImage = hmUI.createWidget(hmUI.widget.IMG, {
+    this.highImage = hmUI.createWidget(hmUI.widget.IMG, {
       x: x + 8,
       y: y + 82,
       src: Images.WeatherHigh,
       show_level: hmUI.show_level.ONLY_NORMAL,
     });
-  }
 
-  if (!lowImage) {
-    lowImage = hmUI.createWidget(hmUI.widget.IMG, {
+    this.lowImage = hmUI.createWidget(hmUI.widget.IMG, {
       x: x + 103,
       y: y + 82,
       src: Images.WeatherLow,
       show_level: hmUI.show_level.ONLY_NORMAL,
     });
-  }
 
-  if (!highTempWidget) {
-    highTempWidget = hmUI.createWidget(hmUI.widget.TEXT_IMG, {
+    this.highTempWidget = hmUI.createWidget(hmUI.widget.TEXT_IMG, {
       x: x + 38,
       y: y + 83,
       type: hmUI.data_type.WEATHER_HIGH,
@@ -63,10 +46,8 @@ export const createWeather = (x, y, w, h, Images) => {
       padding: false,
       isCharacter: false
     });
-  }
 
-  if (!lowTempWidget) {
-    lowTempWidget = hmUI.createWidget(hmUI.widget.TEXT_IMG, {
+    this.lowTempWidget = hmUI.createWidget(hmUI.widget.TEXT_IMG, {
       x: x + 128,
       y: y + 83,
       type: hmUI.data_type.WEATHER_LOW,
@@ -82,10 +63,8 @@ export const createWeather = (x, y, w, h, Images) => {
       padding: false,
       isCharacter: false
     });
-  }
 
-  if (!currentTempWidget) {
-    currentTempWidget = hmUI.createWidget(hmUI.widget.TEXT_IMG, {
+    this.currentTempWidget = hmUI.createWidget(hmUI.widget.TEXT_IMG, {
       x: x + 8,
       y: y + 48,
       type: hmUI.data_type.WEATHER_CURRENT,
@@ -101,10 +80,8 @@ export const createWeather = (x, y, w, h, Images) => {
       padding: false,
       isCharacter: false
     });
-  }
 
-  if (!weatherClick) {
-    weatherClick = hmUI.createWidget(hmUI.widget.IMG_CLICK, {
+    this.weatherClick = hmUI.createWidget(hmUI.widget.IMG_CLICK, {
       x,
       y,
       w,
@@ -113,39 +90,39 @@ export const createWeather = (x, y, w, h, Images) => {
       show_level: hmUI.show_level.ONLY_NORMAL,
     });
   }
-}
 
-export const destroyWeather = () => {
-  if (currentWidget) {
-    hmUI.deleteWidget(currentWidget);
-    currentWidget = null;
-  }
-  if (headingImage) {
-    hmUI.deleteWidget(headingImage);
-    headingImage = null;
-  }
-  if (highImage) {
-    hmUI.deleteWidget(highImage);
-    highImage = null;
-  }
-  if (lowImage) {
-    hmUI.deleteWidget(lowImage);
-    lowImage = null;
-  }
-  if (highTempWidget) {
-    hmUI.deleteWidget(highTempWidget);
-    highTempWidget = null;
-  }
-  if (lowTempWidget) {
-    hmUI.deleteWidget(lowTempWidget);
-    lowTempWidget = null;
-  }
-  if (currentTempWidget) {
-    hmUI.deleteWidget(currentTempWidget);
-    currentTempWidget = null;
-  }
-  if (weatherClick) {
-    hmUI.deleteWidget(weatherClick);
-    weatherClick = null;
+  destroy() {
+    if (this.currentWidget) {
+      hmUI.deleteWidget(this.currentWidget);
+      this.currentWidget = null;
+    }
+    if (this.headingImage) {
+      hmUI.deleteWidget(this.headingImage);
+      this.headingImage = null;
+    }
+    if (this.highImage) {
+      hmUI.deleteWidget(this.highImage);
+      this.highImage = null;
+    }
+    if (this.lowImage) {
+      hmUI.deleteWidget(this.lowImage);
+      this.lowImage = null;
+    }
+    if (this.highTempWidget) {
+      hmUI.deleteWidget(this.highTempWidget);
+      this.highTempWidget = null;
+    }
+    if (this.lowTempWidget) {
+      hmUI.deleteWidget(this.lowTempWidget);
+      this.lowTempWidget = null;
+    }
+    if (this.currentTempWidget) {
+      hmUI.deleteWidget(this.currentTempWidget);
+      this.currentTempWidget = null;
+    }
+    if (this.weatherClick) {
+      hmUI.deleteWidget(this.weatherClick);
+      this.weatherClick = null;
+    }
   }
 }

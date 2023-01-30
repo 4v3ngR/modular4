@@ -1,11 +1,19 @@
 import { getImages } from './includes/images';
-import { createTime, destroyTime } from './widgets/time';
-import { createWeather, destroyWeather } from './widgets/large/weather';
-import { createDate, destroyDate } from './widgets/date';
-import { createSteps, destroySteps } from './widgets/steps';
-import { createCalories, destroyCalories } from './widgets/calories';
-import { createHeartRate, destroyHeartRate } from './widgets/heartrate';
-import { createBattery, destroyBattery } from './widgets/battery';
+import { TimeWidget } from './widgets/time';
+import { WeatherWidget } from './widgets/large/weather';
+import { DateWidget } from './widgets/date';
+import { StepsWidget } from './widgets/steps';
+import { CaloriesWidget } from './widgets/calories';
+import { HeartrateWidget } from './widgets/heartrate';
+import { BatteryWidget } from './widgets/battery';
+
+let timeWidget = null;
+let weatherWidget = null;
+let dateWidget = null;
+let stepsWidget = null;
+let caloriesWidget = null;
+let heartrateWidget = null;
+let batteryWidget = null;
 
 WatchFace({
   initView() {
@@ -26,23 +34,23 @@ WatchFace({
   },
 
   destroyWidgets() {
-    destroyTime();
-    destroyWeather();
-    destroyDate();
-    destroySteps();
-    destroyCalories();
-    destroyHeartRate();
-    destroyBattery();
+    timeWidget.destroy(); timeWidget = null;
+    weatherWidget.destroy(); weatherWidget = null;
+    dateWidget.destroy(); dateWidget = null;
+    stepsWidget.destroy(); stepsWidget = null;
+    caloriesWidget.destroy(); caloriesWidget = null;
+    heartrateWidget.destroy(); heartrateWidget = null;
+    batteryWidget.destroy(); batteryWidget = null;
   },
 
   createWidgets(Images) {
-    createTime(124 - 20 * !hmSetting.getTimeFormat(), 40, 200, 80, Images);
-    createWeather(30, 140, 300, 120, Images);
-    createDate(48, 51, Images);
-    createSteps(40, 288, 80, 80, Images);
-    createCalories(40, 332, 80, 80, Images);
-    createHeartRate(200, 288, 80, 80, Images);
-    createBattery(204, 332, 80, 80, Images);
+    timeWidget = new TimeWidget(124 - 20 * !hmSetting.getTimeFormat(), 40, 200, 80, Images);
+    weatherWidget = new WeatherWidget(30, 140, 300, 120, Images);
+    dateWidget = new DateWidget(48, 51, Images);
+    stepsWidget = new StepsWidget(40, 288, 80, 80, Images);
+    caloriesWidget = new CaloriesWidget(40, 332, 80, 80, Images);
+    heartrateWidget = new HeartrateWidget(200, 288, 80, 80, Images);
+    batteryWidget = new BatteryWidget(204, 332, 80, 80, Images);
   },
 
   onInit() {

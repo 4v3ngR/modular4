@@ -1,9 +1,6 @@
-let dateWidget = null;
-let weekWidget = null;
-
-export const createDate = (x, y, Images) => {
-  if (!dateWidget) {
-    dateWidget = hmUI.createWidget(hmUI.widget.IMG_DATE, {
+export class DateWidget {
+  constructor(x, y, Images) {
+    this.dateWidget = hmUI.createWidget(hmUI.widget.IMG_DATE, {
       day_startX: x,
       day_startY: y + 12,
       day_sc_array: Images.MidNums,
@@ -17,26 +14,24 @@ export const createDate = (x, y, Images) => {
       enable: false,
       show_level: hmUI.show_level.ONLY_NORMAL,
     });
-  }
 
-  if (!weekWidget) {
-    weekWidget = hmUI.createWidget(hmUI.widget.IMG_WEEK, {
+    this.weekWidget = hmUI.createWidget(hmUI.widget.IMG_WEEK, {
       x: x + 2,
       y: y,
       week_en: Images.WeekDays,
       show_level: hmUI.show_level.ONLY_NORMAL,
     });
   }
-}
 
-export const destroyDate = () => {
-  if (dateWidget) {
-    hmUI.deleteWidget(dateWidget);
-    dateWidget = null;
-  }
+  destroy() {
+    if (this.dateWidget) {
+      hmUI.deleteWidget(this.dateWidget);
+      this.dateWidget = null;
+    }
 
-  if (weekWidget) {
-    hmUI.deleteWidget(weekWidget);
-    weekWidget = null;
+    if (this.weekWidget) {
+      hmUI.deleteWidget(this.weekWidget);
+      this.weekWidget = null;
+    }
   }
 }

@@ -1,10 +1,6 @@
-let hrWidget = null;
-let hrImage = null;
-let hrClick = null;
-
-export const createHeartRate = (x, y, w, h, Images) => {
-  if (!hrWidget) {
-    hrWidget = hmUI.createWidget(hmUI.widget.TEXT_IMG, {
+export class HeartrateWidget {
+  constructor(x, y, w, h, Images) {
+    this.hrWidget = hmUI.createWidget(hmUI.widget.TEXT_IMG, {
       x: x + 27,
       y,
       type: hmUI.data_type.HEART,
@@ -16,19 +12,15 @@ export const createHeartRate = (x, y, w, h, Images) => {
       padding: false,
       isCharacter: false
     });
-  }
 
-  if (!hrImage) {
-    hrImage = hmUI.createWidget(hmUI.widget.IMG, {
+    this.hrImage = hmUI.createWidget(hmUI.widget.IMG, {
       x,
       y: y + 7,
       src: Images.HeartRate,
       show_level: hmUI.show_level.ONLY_NORMAL,
     });
-  }
 
-  if (!hrClick) {
-    hrClick = hmUI.createWidget(hmUI.widget.IMG_CLICK, {
+    this.hrClick = hmUI.createWidget(hmUI.widget.IMG_CLICK, {
       x,
       y,
       w,
@@ -37,21 +29,21 @@ export const createHeartRate = (x, y, w, h, Images) => {
       show_level: hmUI.show_level.ONLY_NORMAL,
     });
   }
-}
 
-export const destroyHeartRate = () => {
-  if (hrWidget) {
-    hmUI.deleteWidget(hrWidget);
-    hrWidget = null;
-  }
+  destroy() {
+    if (this.hrWidget) {
+      hmUI.deleteWidget(this.hrWidget);
+      this.hrWidget = null;
+    }
 
-  if (hrImage) {
-    hmUI.deleteWidget(hrImage);
-    hrImage = null;
-  }
+    if (this.hrImage) {
+      hmUI.deleteWidget(this.hrImage);
+      this.hrImage = null;
+    }
 
-  if (hrClick) {
-    hmUI.deleteWidget(hrClick);
-    hrClick = null;
+    if (this.hrClick) {
+      hmUI.deleteWidget(this.hrClick);
+      this.hrClick = null;
+    }
   }
 }

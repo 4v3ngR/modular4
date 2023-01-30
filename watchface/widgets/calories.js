@@ -1,9 +1,6 @@
-let caloriesWidget = null;
-let caloriesImage = null;
-
-export const createCalories = (x, y, w, h, Images) => {
-  if (!caloriesWidget) {
-    caloriesWidget = hmUI.createWidget(hmUI.widget.TEXT_IMG, {
+export class CaloriesWidget {
+  constructor(x, y, w, h, Images) {
+    this.caloriesWidget = hmUI.createWidget(hmUI.widget.TEXT_IMG, {
       x: x + 36,
       y,
       type: hmUI.data_type.CAL,
@@ -11,29 +8,27 @@ export const createCalories = (x, y, w, h, Images) => {
       align_h: hmUI.align.LEFT,
       h_space: 0,
       show_level: hmUI.show_level.ONLY_NORMAL,
-      padding: false,
+      padding: false, 
       isCharacter: false
     });
-  }
 
-  if (!caloriesImage) {
-    caloriesImage = hmUI.createWidget(hmUI.widget.IMG, {
+    this.caloriesImage = hmUI.createWidget(hmUI.widget.IMG, {
       x,
       y: y + 4,
-      src: Images.Calories,
+      src: Images.Calories, 
       show_level: hmUI.show_level.ONLY_NORMAL,
     });
-  }
-}
+  } 
 
-export const destroyCalories = () => {
-  if (caloriesWidget) {
-    hmUI.deleteWidget(caloriesWidget);
-    caloriesWidget = null;
-  }
+  destroy() {
+    if (this.caloriesWidget) {
+      hmUI.deleteWidget(this.caloriesWidget);
+      this.caloriesWidget = null;
+    }
 
-  if (caloriesImage) {
-    hmUI.deleteWidget(caloriesImage);
-    caloriesImage = null
+    if (this.caloriesImage) {
+      hmUI.deleteWidget(this.caloriesImage);
+      this.caloriesImage = null
+    }
   }
 }

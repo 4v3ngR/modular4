@@ -1,9 +1,6 @@
-let batteryWidget = null;
-let batteryImage = null;
-
-export const createBattery = (x, y, w, h, Images) => {
-  if (!batteryWidget) {
-    batteryWidget = hmUI.createWidget(hmUI.widget.TEXT_IMG, {
+export class BatteryWidget {
+  constructor(x, y, w, h, Images) {
+    this.batteryWidget = hmUI.createWidget(hmUI.widget.TEXT_IMG, {
       x: x + 23,
       y,
       type: hmUI.data_type.BATTERY,
@@ -14,26 +11,24 @@ export const createBattery = (x, y, w, h, Images) => {
       padding: false,
       isCharacter: false
     });
-  }
 
-  if (!batteryImage) {
-    batteryImage = hmUI.createWidget(hmUI.widget.IMG, {
+    this.batteryImage = hmUI.createWidget(hmUI.widget.IMG, {
       x,
       y: y + 7,
       src: Images.Percentage,
       show_level: hmUI.show_level.ONLY_NORMAL,
     });
   }
-}
 
-export const destroyBattery = () => {
-  if (batteryWidget) {
-    hmUI.deleteWidget(batteryWidget);
-    batteryWidget = null;
-  }
+  destroy() {
+    if (this.batteryWidget) {
+      hmUI.deleteWidget(this.batteryWidget);
+      this.batteryWidget = null;
+    }
 
-  if (batteryImage) {
-    hmUI.deleteWidget(batteryImage);
-    batteryImage = null;
+    if (this.batteryImage) {
+      hmUI.deleteWidget(this.batteryImage);
+      this.batteryImage = null;
+    }
   }
 }
