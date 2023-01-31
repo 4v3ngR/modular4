@@ -7,6 +7,8 @@ import { CaloriesWidget } from './widgets/calories';
 import { HeartrateWidget } from './widgets/heartrate';
 import { BatteryWidget } from './widgets/battery';
 
+import { EditableWidget } from './widgets/editable';
+
 let timeWidget = null;
 let weatherWidget = null;
 let dateWidget = null;
@@ -46,6 +48,8 @@ WatchFace({
   createWidgets(Images) {
     timeWidget = new TimeWidget(124 - 20 * !hmSetting.getTimeFormat(), 40, 200, 80, Images);
     weatherWidget = new WeatherWidget(30, 140, 300, 120, Images);
+
+    // TODO: replae these with editables
     dateWidget = new DateWidget(48, 51, Images);
     stepsWidget = new StepsWidget(40, 288, 80, 80, Images);
     caloriesWidget = new CaloriesWidget(40, 332, 80, 80, Images);
