@@ -7,7 +7,7 @@ export class DateWidget {
       day_tc_array: Images.MidNums,
       day_en_array: Images.MidNums,
       day_align: hmUI.align.LEFT,
-      day_zero: 0,
+      day_zero: 1,
       day_follow: 0,
       day_space: 0,
       day_is_character: false,
