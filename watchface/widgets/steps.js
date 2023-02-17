@@ -41,4 +41,14 @@ export class StepsWidget {
       this.stepsImage = null;
     }
   }
+
+  show() {
+    this.stepsWidget.setProperty(hmUI.prop.VISIBLE, true);
+    this.stepsImage.setProperty(hmUI.prop.VISIBLE, true);
+  }
+
+  hide() {
+    this.stepsWidget.setProperty(hmUI.prop.VISIBLE, false);
+    this.stepsImage.setProperty(hmUI.prop.VISIBLE, false);
+  }
 }

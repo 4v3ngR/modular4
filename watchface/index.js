@@ -6,22 +6,33 @@ import { StepsWidget } from './widgets/steps';
 import { CaloriesWidget } from './widgets/calories';
 import { HeartrateWidget } from './widgets/heartrate';
 import { BatteryWidget } from './widgets/battery';
+import { PageWidget } from './widgets/page';
+import { DistanceWidget } from './widgets/distance';
 
 import { EditableWidget } from './widgets/editable';
 
 let timeWidget = null;
 let weatherWidget = null;
 let dateWidget = null;
+let pageWidget = null;
+
+// page 0
 let stepsWidget = null;
 let caloriesWidget = null;
 let heartrateWidget = null;
 let batteryWidget = null;
 
+// page 1
+let distanceWidget = null;
+
+let activePage = 0;
+
 WatchFace({
   initView() {
-    const Images = getImages(hmSetting.getLanguage());
     const deviceInfo = hmSetting.getDeviceInfo();
     const screenType = hmSetting.getScreenType();
+
+    this.Images = getImages(hmSetting.getLanguage());
 
     // background
     hmUI.createWidget(hmUI.widget.FILL_RECT, {
@@ -32,29 +43,63 @@ WatchFace({
       color: 0x000000
     });
 
-    this.createWidgets(Images);
+    this.createWidgets();
+  },
+
+  setPage(page) {
+    switch(page) {
+      case 0:
+        pageWidget.setPage(1, this.Images);
+        stepsWidget.hide();
+        caloriesWidget.hide();
+        heartrateWidget.hide();
+        batteryWidget.hide();
+        distanceWidget.show();
+        break;
+      case 1:
+        pageWidget.setPage(0, this.Images);
+        stepsWidget.show();
+        caloriesWidget.show();
+        heartrateWidget.show();
+        batteryWidget.show();
+        distanceWidget.hide();
+        break;
+    }
+  },
+
+  onPgClick() {
+    activePage = 1 - activePage;
+    this.setPage(activePage);
   },
 
   destroyWidgets() {
     timeWidget.destroy(); timeWidget = null;
     weatherWidget.destroy(); weatherWidget = null;
     dateWidget.destroy(); dateWidget = null;
+    pageWidget.destroy(); pageWidget = null;
     stepsWidget.destroy(); stepsWidget = null;
     caloriesWidget.destroy(); caloriesWidget = null;
     heartrateWidget.destroy(); heartrateWidget = null;
     batteryWidget.destroy(); batteryWidget = null;
+    distanceWidget.destroy(); distanceWidget = null;
   },
 
-  createWidgets(Images) {
-    timeWidget = new TimeWidget(124 - 20 * !hmSetting.getTimeFormat(), 40, 200, 80, Images);
-    weatherWidget = new WeatherWidget(30, 140, 300, 120, Images);
+  createWidgets() {
+    timeWidget = new TimeWidget(124 - 20 * !hmSetting.getTimeFormat(), 40, 200, 80, this.Images);
+    weatherWidget = new WeatherWidget(30, 140, 300, 120, this.Images);
+    dateWidget = new DateWidget(48, 51, this.Images);
+    pageWidget = new PageWidget(154, 304, 30, 56, activePage, this.Images, this.onPgClick.bind(this));
 
-    // TODO: replae these with editables
-    dateWidget = new DateWidget(48, 51, Images);
-    stepsWidget = new StepsWidget(40, 288, 80, 80, Images);
-    caloriesWidget = new CaloriesWidget(40, 332, 80, 80, Images);
-    heartrateWidget = new HeartrateWidget(200, 288, 80, 80, Images);
-    batteryWidget = new BatteryWidget(204, 332, 80, 80, Images);
+    // page 0
+    stepsWidget = new StepsWidget(40, 288, 80, 80, this.Images);
+    caloriesWidget = new CaloriesWidget(40, 332, 80, 80, this.Images);
+    heartrateWidget = new HeartrateWidget(200, 288, 80, 80, this.Images);
+    batteryWidget = new BatteryWidget(204, 332, 80, 80, this.Images);
+
+    // page 1
+    distanceWidget = new DistanceWidget(40, 288, 80, 80, this.Images);
+
+    this.setPage(activePage);
   },
 
   onInit() {
@@ -66,9 +111,9 @@ WatchFace({
         const newTimeFormat = hmSetting.getTimeFormat();
         const newLanguage = hmSetting.getLanguage();
         if (newTimeFormat !== timeFormat || newLanguage !== language) {
-          const Images = getImages(hmSetting.getLanguage());
+          this.Images = getImages(hmSetting.getLanguage());
           this.destroyWidgets();
-          this.createWidgets(Images);
+          this.createWidgets();
           timeFormat = newTimeFormat;
           language = newLanguage;
         }

@@ -31,4 +31,14 @@ export class CaloriesWidget {
       this.caloriesImage = null
     }
   }
+
+  show() {
+    this.caloriesWidget.setProperty(hmUI.prop.VISIBLE, true);
+    this.caloriesImage.setProperty(hmUI.prop.VISIBLE, true);
+  }
+
+  hide() {
+    this.caloriesWidget.setProperty(hmUI.prop.VISIBLE, false);
+    this.caloriesImage.setProperty(hmUI.prop.VISIBLE, false);
+  }
 }

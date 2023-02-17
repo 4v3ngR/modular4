@@ -46,4 +46,16 @@ export class HeartrateWidget {
       this.hrClick = null;
     }
   }
+
+  show() {
+    this.hrWidget.setProperty(hmUI.prop.VISIBLE, true);
+    this.hrImage.setProperty(hmUI.prop.VISIBLE, true);
+    this.hrClick.setProperty(hmUI.prop.VISIBLE, true);
+  }
+
+  hide() {
+    this.hrWidget.setProperty(hmUI.prop.VISIBLE, false);
+    this.hrImage.setProperty(hmUI.prop.VISIBLE, false);
+    this.hrClick.setProperty(hmUI.prop.VISIBLE, false);
+  }
 }

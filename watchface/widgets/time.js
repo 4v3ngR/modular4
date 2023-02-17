@@ -58,4 +58,14 @@ export class TimeWidget {
       this.clickZone = null;
     }
   }
+
+  show() {
+    this.timeWidget.setProperty(hmUI.prop.VISIBLE, true);
+    this.clickZone.setProperty(hmUI.prop.VISIBLE, true);
+  }
+
+  hide() {
+    this.timeWidget.setProperty(hmUI.prop.VISIBLE, false);
+    this.clickZone.setProperty(hmUI.prop.VISIBLE, false);
+  }
 }

@@ -31,4 +31,14 @@ export class BatteryWidget {
       this.batteryImage = null;
     }
   }
+
+  show() {
+    this.batteryWidget.setProperty(hmUI.prop.VISIBLE, true);
+    this.batteryImage.setProperty(hmUI.prop.VISIBLE, true);
+  }
+
+  hide() {
+    this.batteryWidget.setProperty(hmUI.prop.VISIBLE, false);
+    this.batteryImage.setProperty(hmUI.prop.VISIBLE, false);
+  }
 }

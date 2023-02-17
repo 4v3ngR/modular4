@@ -34,4 +34,14 @@ export class DateWidget {
       this.weekWidget = null;
     }
   }
+
+  show() {
+    this.dateWidget.setProperty(hmUI.prop.VISIBLE, true);
+    this.weekWidget.setProperty(hmUI.prop.VISIBLE, true);
+  }
+
+  hide() {
+    this.dateWidget.setProperty(hmUI.prop.VISIBLE, false);
+    this.weekWidget.setProperty(hmUI.prop.VISIBLE, false);
+  }
 }

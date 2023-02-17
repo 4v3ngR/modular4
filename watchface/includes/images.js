@@ -1,5 +1,4 @@
 export const getImages = (lang) => {
-	console.log("language = ", lang);
   let imgRoot = 'default/';
   switch (lang) {
     case 0: // zh-CN
@@ -136,6 +135,10 @@ export const getImages = (lang) => {
     Percentage: img('Icons/percentage.png'),
     Steps: img('Icons/steps.png'),
     PM: img('Time/pm.png'),
-    AM: img('Time/am.png')
+    AM: img('Time/am.png'),
+    PageDown: img('Page/down.png'),
+    PageUp: img('Page/up.png'),
+    Distance: img('Icons/distance.png'),
+    SmallDot: img('Digits/small_dot.png')
   };
 }
