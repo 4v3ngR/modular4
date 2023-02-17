@@ -10,7 +10,13 @@ export class DistanceWidget {
       show_level: hmUI.show_level.ONLY_NORMAL,
       padding: false,
       isCharacter: false,
-      dot_image: Images.SmallDot
+      dot_image: Images.SmallDot,
+      unit_sc: Images.KM,
+      unit_tc: Images.KM,
+      unit_en: Images.KM,
+      imperial_unit_sc: Images.Miles,
+      imperial_unit_tc: Images.Miles,
+      imperial_unit_en: Images.Miles
     });
 
     this.distanceImage = hmUI.createWidget(hmUI.widget.IMG, {

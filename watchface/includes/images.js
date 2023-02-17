@@ -139,6 +139,8 @@ export const getImages = (lang) => {
     PageDown: img('Page/down.png'),
     PageUp: img('Page/up.png'),
     Distance: img('Icons/distance.png'),
-    SmallDot: img('Digits/small_dot.png')
+    SmallDot: img('Digits/small_dot.png'),
+    KM: img('Distance/km.png'),
+    Miles: img('Distance/mi.png')
   };
 }
