@@ -9,6 +9,8 @@ import { BatteryWidget } from './widgets/battery';
 import { PageWidget } from './widgets/page';
 import { DistanceWidget } from './widgets/distance';
 import { VO2MaxWidget } from './widgets/vo2max';
+import { SPO2Widget } from './widgets/spo2';
+import { TrainingLoadWidget } from './widgets/training';
 
 import { EditableWidget } from './widgets/editable';
 
@@ -26,6 +28,8 @@ let batteryWidget = null;
 // page 1
 let distanceWidget = null;
 let vo2maxWidget = null;
+let spo2Widget = null;
+let trainingLoadWidget = null;
 
 let activePage = 0;
 
@@ -59,6 +63,8 @@ WatchFace({
 
         distanceWidget.show();
         vo2maxWidget.show();
+        spo2Widget.show();
+        trainingLoadWidget.show();
         break;
       case 1:
         pageWidget.setPage(0, this.Images);
@@ -69,6 +75,8 @@ WatchFace({
 
         distanceWidget.hide();
         vo2maxWidget.hide();
+        spo2Widget.hide();
+        trainingLoadWidget.hide();
         break;
     }
   },
@@ -82,20 +90,21 @@ WatchFace({
     timeWidget.destroy(); timeWidget = null;
     weatherWidget.destroy(); weatherWidget = null;
     dateWidget.destroy(); dateWidget = null;
-    pageWidget.destroy(); pageWidget = null;
     stepsWidget.destroy(); stepsWidget = null;
     caloriesWidget.destroy(); caloriesWidget = null;
     heartrateWidget.destroy(); heartrateWidget = null;
     batteryWidget.destroy(); batteryWidget = null;
     distanceWidget.destroy(); distanceWidget = null;
     vo2maxWidget.destroy(); vo2maxWidget = null;
+    spo2Widget.destroy(); spo2Widget = null;
+    trainingLoadWidget.destroy(); trainingLoadWidget = null;
+    pageWidget.destroy(); pageWidget = null;
   },
 
   createWidgets() {
     timeWidget = new TimeWidget(124 - 20 * !hmSetting.getTimeFormat(), 40, 200, 80, this.Images);
     weatherWidget = new WeatherWidget(30, 140, 300, 120, this.Images);
     dateWidget = new DateWidget(48, 51, this.Images);
-    pageWidget = new PageWidget(154, 304, 30, 56, activePage, this.Images, this.onPgClick.bind(this));
 
     // page 0
     stepsWidget = new StepsWidget(40, 288, 80, 80, this.Images);
@@ -106,7 +115,10 @@ WatchFace({
     // page 1
     distanceWidget = new DistanceWidget(40, 288, 80, 80, this.Images);
     vo2maxWidget = new VO2MaxWidget(40, 332, 80, 80, this.Images);
+    spo2Widget = new SPO2Widget(200, 288, 80, 80, this.Images);
+    trainingLoadWidget = new TrainingLoadWidget(200, 332, 80, 80, this.Images);
 
+    pageWidget = new PageWidget(154, 304, 30, 56, activePage, this.Images, this.onPgClick.bind(this));
     this.setPage(activePage);
   },
 

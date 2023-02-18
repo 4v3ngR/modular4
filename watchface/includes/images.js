@@ -143,6 +143,8 @@ export const getImages = (lang) => {
     KM: img('Distance/km.png'),
     Miles: img('Distance/mi.png'),
     VO2Max: img('Icons/vo2max.png'),
-    Percent: img('Static/percent.png')
+    Percent: img('Static/percent.png'),
+    SPO2: img('Icons/spo2.png'),
+    TrainingLoad: img('Icons/training.png')
   };
 }

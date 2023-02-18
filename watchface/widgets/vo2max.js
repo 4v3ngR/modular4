@@ -20,7 +20,7 @@ export class VO2MaxWidget {
       x,
       y: y + 6,
       w: 32,
-      h: 32,
+      h,
       src: Images.VO2Max,
       show_level: hmUI.show_level.ONLY_NORMAL,
     });
