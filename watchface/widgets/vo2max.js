@@ -8,9 +8,9 @@ export class VO2MaxWidget {
       align_h: hmUI.align.LEFT,
       h_space: 0,
       show_level: hmUI.show_level.ONLY_NORMAL,
-      unit_sc: Images.Percent,
-      unit_tc: Images.Percent,
-      unit_en: Images.Percent,
+      unit_sc: Images.Invalid,
+      unit_tc: Images.Invalid,
+      unit_en: Images.Invalid,
       invalid_image: Images.Invalid,
       padding: false,
       isCharacter: false
