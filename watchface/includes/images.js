@@ -141,6 +141,8 @@ export const getImages = (lang) => {
     Distance: img('Icons/distance.png'),
     SmallDot: img('Digits/small_dot.png'),
     KM: img('Distance/km.png'),
-    Miles: img('Distance/mi.png')
+    Miles: img('Distance/mi.png'),
+    VO2Max: img('Icons/vo2max.png'),
+    Percent: img('Static/percent.png')
   };
 }

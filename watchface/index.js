@@ -8,6 +8,7 @@ import { HeartrateWidget } from './widgets/heartrate';
 import { BatteryWidget } from './widgets/battery';
 import { PageWidget } from './widgets/page';
 import { DistanceWidget } from './widgets/distance';
+import { VO2MaxWidget } from './widgets/vo2max';
 
 import { EditableWidget } from './widgets/editable';
 
@@ -24,6 +25,7 @@ let batteryWidget = null;
 
 // page 1
 let distanceWidget = null;
+let vo2maxWidget = null;
 
 let activePage = 0;
 
@@ -54,7 +56,9 @@ WatchFace({
         caloriesWidget.hide();
         heartrateWidget.hide();
         batteryWidget.hide();
+
         distanceWidget.show();
+        vo2maxWidget.show();
         break;
       case 1:
         pageWidget.setPage(0, this.Images);
@@ -62,7 +66,9 @@ WatchFace({
         caloriesWidget.show();
         heartrateWidget.show();
         batteryWidget.show();
+
         distanceWidget.hide();
+        vo2maxWidget.hide();
         break;
     }
   },
@@ -82,6 +88,7 @@ WatchFace({
     heartrateWidget.destroy(); heartrateWidget = null;
     batteryWidget.destroy(); batteryWidget = null;
     distanceWidget.destroy(); distanceWidget = null;
+    vo2maxWidget.destroy(); vo2maxWidget = null;
   },
 
   createWidgets() {
@@ -98,6 +105,7 @@ WatchFace({
 
     // page 1
     distanceWidget = new DistanceWidget(40, 288, 80, 80, this.Images);
+    vo2maxWidget = new VO2MaxWidget(40, 332, 80, 80, this.Images);
 
     this.setPage(activePage);
   },
